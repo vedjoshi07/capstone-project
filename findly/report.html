@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Report a lost or found item at Ganpat University campus to generate a digital claim ticket.">
+  <title>Report an Item — Findly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg findly-nav">
+    <div class="container">
+      <a class="findly-brand" href="index.html">
+        <span class="brand-mark">✦</span> Findly
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#findlyNav">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="findlyNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="browse.html">Browse Catalog</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Console</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <a class="nav-link-report active" href="report.html">
+            <i class="bi bi-tag-fill me-1"></i> Report Item
+          </a>
+          <a class="nav-link" href="login.html">Sign In</a>
+          <a class="nav-link-register" href="login.html?tab=register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="report-page">
+    <div class="container">
+      
+      <div class="report-card">
+        <!-- Header -->
+        <div class="report-card-header text-center">
+          <span class="eyebrow">Digital Ticket Generation</span>
+          <h1 id="report-form-title">Report a Lost Item</h1>
+          <p class="text-muted mb-0 fs-7">Submit details to create a trackable claim ticket in the campus repository.</p>
+        </div>
+
+        <!-- Form posting to PHP endpoint placeholder -->
+        <form action="report-submit.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+          
+          <!-- Lost vs Found Radio Toggle -->
+          <div class="report-toggle">
+            <input type="radio" name="item_type" id="toggle-lost" value="lost" checked>
+            <label for="toggle-lost" class="toggle-label-lost">
+              <i class="bi bi-exclamation-circle"></i> I Lost Something
+            </label>
+
+            <input type="radio" name="item_type" id="toggle-found" value="found">
+            <label for="toggle-found" class="toggle-label-found">
+              <i class="bi bi-check-circle"></i> I Found Something
+            </label>
+          </div>
+
+          <div class="row g-3">
+
+            <!-- Item Title -->
+            <div class="col-12">
+              <label for="title" class="form-label">Item Name / Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="e.g. Blue Wildcraft Backpack, Sony Headphones..." required>
+              <div class="invalid-feedback">Please provide a clear title for the item.</div>
+              <div class="form-text">Include key brand names, colors, or distinguishing marks.</div>
+            </div>
+
+            <!-- Category & Location -->
+            <div class="col-md-6">
+              <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+              <select class="form-select" id="category" name="category_id" required>
+                <option value="" selected disabled>Select category...</option>
+                <option value="1">Electronics (Laptops, Phones, Audio)</option>
+                <option value="2">Accessories (Watches, Glasses, Jewelry)</option>
+                <option value="3">Documents &amp; Cards (Student ID, Wallet)</option>
+                <option value="4">Keys &amp; Lockers</option>
+                <option value="5">Bags &amp; Backpacks</option>
+                <option value="6">Clothing &amp; Wearables</option>
+                <option value="7">Books &amp; Stationery</option>
+                <option value="8">Other</option>
+              </select>
+              <div class="invalid-feedback">Please select an item category.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="location" class="form-label">Campus Location <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="location" name="location" placeholder="e.g. Library 2nd Floor, Main Canteen..." required>
+              <div class="invalid-feedback">Please specify where the item was lost or found.</div>
+            </div>
+
+            <!-- Date & Time -->
+            <div class="col-md-6">
+              <label for="date" class="form-label">Date Lost/Found <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" id="date" name="event_date" required>
+              <div class="invalid-feedback">Please select a valid date.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="contact_pref" class="form-label">Contact Preference</label>
+              <select class="form-select" id="contact_pref" name="contact_preference">
+                <option value="email" selected>Email via Findly Portal</option>
+                <option value="phone">Phone / WhatsApp</option>
+                <option value="security">Security Desk Proxy (Anonymous)</option>
+              </select>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12">
+              <label for="description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe unique features, scratches, contents inside, wallpaper design, or serial number clues..." required></textarea>
+              <div class="invalid-feedback">Please enter a description to help verify ownership.</div>
+            </div>
+
+            <!-- Drag & Drop Photo Upload -->
+            <div class="col-12">
+              <label class="form-label">Upload Photo Evidence (Optional but recommended)</label>
+              <div class="upload-zone" id="uploadZone">
+                <input type="file" id="fileInput" name="item_image" accept="image/*" class="d-none">
+                
+                <div id="uploadInner">
+                  <i class="bi bi-cloud-arrow-up upload-icon"></i>
+                  <p class="upload-text">
+                    Drag and drop your image here, or <span class="upload-browse">browse files</span>
+                  </p>
+                  <p class="upload-hint mb-0">Supports JPG, PNG, WEBP up to 5MB</p>
+                </div>
+
+                <div id="uploadPreview" class="upload-preview d-none">
+                  <img id="previewImg" src="" alt="Upload preview">
+                  <button type="button" class="upload-remove" id="removeUpload">Change Photo</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Verification Checkbox -->
+            <div class="col-12 mt-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="terms" required>
+                <label class="form-check-label fs-7" for="terms">
+                  I confirm that the details provided are accurate and truthful to the best of my knowledge. False claims may result in campus disciplinary action.
+                </label>
+                <div class="invalid-feedback">You must confirm truthfulness before submitting.</div>
+              </div>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="col-12 mt-4 d-flex gap-3 justify-content-end">
+              <a href="index.html" class="btn btn-outline-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-tag-fill me-1"></i> Generate Claim Ticket
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="findly-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><span class="brand-mark">✦</span> Findly</div>
+          <p class="footer-tagline">Campus Lost &amp; Found Management System</p>
+          <p class="fs-7 text-white-50 mb-0">Ganpat University • Student &amp; Staff Service</p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 ms-lg-auto">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Catalog</a></li>
+            <li><a href="report.html">Report Item</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Quick Actions</div>
+          <ul class="footer-links">
+            <li><a href="report.html?type=lost">Report Lost</a></li>
+            <li><a href="report.html?type=found">Report Found</a></li>
+            <li><a href="login.html">Student Sign In</a></li>
+            <li><a href="login.html?tab=register">Create Account</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <div class="footer-col-title">Campus Security</div>
+          <ul class="footer-links">
+            <li class="fs-7 text-white-50"><i class="bi bi-geo-alt me-1 text-brass"></i> Main Security Office, Gate 1</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-clock me-1 text-brass"></i> Mon–Fri: 8:00 AM – 6:00 PM</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-telephone me-1 text-brass"></i> Ext: 4092 / 4093</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Findly System. All rights reserved.</div>
+        <div class="footer-ref">TAG-SYS-v1.0.4 • GANPAT-UNIV</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View ticket details and submit ownership claim request for reported campus items.">
+  <title>Ticket #FND-2026-0892 — Findly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg findly-nav">
+    <div class="container">
+      <a class="findly-brand" href="index.html">
+        <span class="brand-mark">✦</span> Findly
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#findlyNav">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="findlyNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="browse.html">Browse Catalog</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Console</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <a class="nav-link-report" href="report.html">
+            <i class="bi bi-tag-fill me-1"></i> Report Item
+          </a>
+          <a class="nav-link" href="login.html">Sign In</a>
+          <a class="nav-link-register" href="login.html?tab=register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="item-detail-page">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="browse.html">Catalog</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ticket #FND-2026-0892</li>
+        </ol>
+      </nav>
+
+      <!-- Main Ticket Card Layout -->
+      <!-- TODO: PHP bind item details from DB -->
+      <div class="detail-ticket max-w-900 mx-auto">
+        
+        <!-- Top Half: Image + Metadata -->
+        <div class="detail-top">
+          
+          <!-- Photo Container -->
+          <div class="detail-photo">
+            <!-- Replace placeholder with actual img if available: <img src="uploads/item_892.jpg" alt="MacBook Air M2"> -->
+            <div class="detail-photo-placeholder">
+              <i class="bi bi-laptop text-slate"></i>
+            </div>
+          </div>
+
+          <!-- Ticket Info Sidebar -->
+          <div class="detail-info">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="detail-ref">#FND-2026-0892</span>
+              <!-- Stamp with thump animation -->
+              <span class="status-stamp stamp-found stamp-animate">FOUND</span>
+            </div>
+
+            <h1 class="detail-title">MacBook Air M2 (Space Grey)</h1>
+
+            <ul class="detail-meta-list">
+              <li>
+                <i class="bi bi-geo-alt"></i>
+                <div>
+                  <strong>Location Found:</strong> Central Library, 2nd Floor Silent Reading Area (Desk #14)
+                </div>
+              </li>
+              <li>
+                <i class="bi bi-calendar3"></i>
+                <div>
+                  <strong>Date Logged:</strong> July 26, 2026 at 2:15 PM
+                </div>
+              </li>
+              <li>
+                <i class="bi bi-tag"></i>
+                <div>
+                  <strong>Category:</strong> Electronics / Laptops
+                </div>
+              </li>
+              <li>
+                <i class="bi bi-shield-check"></i>
+                <div>
+                  <strong>Custody Status:</strong> Handed to Main Security Office (Gate 1)
+                </div>
+              </li>
+            </ul>
+
+            <div class="detail-desc">
+              <strong class="d-block text-ink mb-1">Item Description:</strong>
+              Space Grey 13-inch MacBook Air. Found inside a grey felt sleeve on Desk 14 in the library silent room. Has a small university tech club sticker on the bottom right corner of the lid. Power adapter not present.
+            </div>
+
+            <div class="mt-auto pt-3 d-flex align-items-center justify-content-between border-top border-line fs-7 text-muted">
+              <span>Reported by: Staff Proxy (Library Desk)</span>
+              <span>Verification Level: High</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Signature Perforated Tear Line -->
+        <hr class="ticket-tear">
+
+        <!-- Bottom Half: Claim Submission Form -->
+        <div class="claim-form-section" id="claim-section">
+          <h2><i class="bi bi-shield-lock me-2 text-brass"></i> Submit Ownership Claim</h2>
+          <p class="text-muted fs-7 mb-4">To prevent fraudulent claims, describe specific proof of ownership (serial number, lockscreen wallpaper details, or unique scratches) that matches security records.</p>
+
+          <!-- Form posting to PHP claim endpoint placeholder -->
+          <form action="claim-submit.php" method="post" class="needs-validation" novalidate>
+            <!-- Hidden item ID for PHP -->
+            <input type="hidden" name="item_id" value="892">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="claimant_name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="claimant_name" name="claimant_name" placeholder="Your registered full name" required>
+                <div class="invalid-feedback">Please enter your full name.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="student_id" class="form-label">Student / Employee ID <span class="text-danger">*</span></label>
+                <input type="text" class="form-control font-mono" id="student_id" name="student_id" placeholder="e.g. 2024CSE1042" required>
+                <div class="invalid-feedback">Please provide your institutional ID number.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="claimant_email" class="form-label">Ganpat Uni Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="claimant_email" name="claimant_email" placeholder="student@ganpatuniversity.ac.in" required>
+                <div class="invalid-feedback">Please enter your valid university email.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="claimant_phone" class="form-label">Phone / Mobile Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="claimant_phone" name="claimant_phone" placeholder="+91 98765 43210" required>
+                <div class="invalid-feedback">Please enter your contact phone number.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="proof_details" class="form-label">Proof of Ownership &amp; Key Identification Features <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="proof_details" name="proof_details" rows="4" placeholder="Detail any serial numbers, sticker names, custom lock screen images, desktop username, or specific file names stored on the device..." required></textarea>
+                <div class="invalid-feedback">Detailed proof of ownership is required for security verification.</div>
+                <div class="form-text">Security staff will review these details before approving item retrieval.</div>
+              </div>
+
+              <div class="col-12 mt-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <span class="fs-7 text-muted"><i class="bi bi-info-circle me-1"></i> Claims are processed within 24 business hours.</span>
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-file-earmark-check me-1"></i> Submit Claim Stub
+                </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="findly-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><span class="brand-mark">✦</span> Findly</div>
+          <p class="footer-tagline">Campus Lost &amp; Found Management System</p>
+          <p class="fs-7 text-white-50 mb-0">Ganpat University • Student &amp; Staff Service</p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 ms-lg-auto">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Catalog</a></li>
+            <li><a href="report.html">Report Item</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Quick Actions</div>
+          <ul class="footer-links">
+            <li><a href="report.html?type=lost">Report Lost</a></li>
+            <li><a href="report.html?type=found">Report Found</a></li>
+            <li><a href="login.html">Student Sign In</a></li>
+            <li><a href="login.html?tab=register">Create Account</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <div class="footer-col-title">Campus Security</div>
+          <ul class="footer-links">
+            <li class="fs-7 text-white-50"><i class="bi bi-geo-alt me-1 text-brass"></i> Main Security Office, Gate 1</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-clock me-1 text-brass"></i> Mon–Fri: 8:00 AM – 6:00 PM</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-telephone me-1 text-brass"></i> Ext: 4092 / 4093</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Findly System. All rights reserved.</div>
+        <div class="footer-ref">TAG-SYS-v1.0.4 • GANPAT-UNIV</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

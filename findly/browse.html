@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse reported lost and found items at Ganpat University. Filter by status, category, date, and location.">
+  <title>Browse Catalog — Findly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg findly-nav">
+    <div class="container">
+      <a class="findly-brand" href="index.html">
+        <span class="brand-mark">✦</span> Findly
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#findlyNav">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="findlyNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="browse.html">Browse Catalog</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Console</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <a class="nav-link-report" href="report.html">
+            <i class="bi bi-tag-fill me-1"></i> Report Item
+          </a>
+          <a class="nav-link" href="login.html">Sign In</a>
+          <a class="nav-link-register" href="login.html?tab=register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Browse Header -->
+    <div class="browse-hero">
+      <div class="container">
+        <span class="eyebrow">Public Record Catalog</span>
+        <h1>Claim Ticket Index</h1>
+        <p class="text-muted mb-0">Search and filter active lost and found reports across campus locations.</p>
+      </div>
+    </div>
+
+    <!-- Main Browse Section -->
+    <section class="section py-4">
+      <div class="container">
+
+        <!-- Filter Form -->
+        <form action="browse.html" method="get" id="filterForm">
+          <div class="filter-bar">
+            <!-- Search Keyword -->
+            <div class="filter-group flex-grow-1" style="min-width: 200px;">
+              <label for="filter-query">Search Term</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-paper border-line text-muted"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" id="filter-query" name="q" placeholder="Keyword or tag ref..." value="">
+              </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-group">
+              <label for="filter-status">Status</label>
+              <select class="form-select" id="filter-status" name="status">
+                <option value="">All Statuses</option>
+                <option value="lost">Lost Only</option>
+                <option value="found">Found Only</option>
+                <option value="claimed">Claimed</option>
+                <option value="returned">Returned</option>
+              </select>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+              <label for="filter-category">Category</label>
+              <select class="form-select" id="filter-category" name="category">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="accessories">Accessories</option>
+                <option value="documents">Documents &amp; IDs</option>
+                <option value="keys">Keys &amp; Lockers</option>
+                <option value="bags">Bags &amp; Pouches</option>
+                <option value="clothing">Clothing</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Location Filter -->
+            <div class="filter-group">
+              <label for="filter-location">Location</label>
+              <select class="form-select" id="filter-location" name="location">
+                <option value="">All Campus Locations</option>
+                <option value="library">Central Library</option>
+                <option value="canteen">Main Canteen</option>
+                <option value="eng_block">Engineering Block B</option>
+                <option value="student_center">Student Activity Center</option>
+                <option value="parking">North Parking</option>
+                <option value="sports">Sports Complex</option>
+              </select>
+            </div>
+
+            <!-- Date Range Filter -->
+            <div class="filter-group">
+              <label for="filter-date">Date Range</label>
+              <select class="form-select" id="filter-date" name="date_range">
+                <option value="">Any Time</option>
+                <option value="today">Today</option>
+                <option value="week">Past 7 Days</option>
+                <option value="month">Past 30 Days</option>
+              </select>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-funnel me-1"></i> Filter</button>
+              <a href="browse.html" class="btn btn-outline-secondary btn-sm">Reset</a>
+            </div>
+          </div>
+        </form>
+
+        <!-- Active Filter Pills -->
+        <div class="active-filters">
+          <span class="fs-7 text-muted me-1 align-self-center">Active filters:</span>
+          <span class="filter-pill">
+            Status: <strong>Found</strong>
+            <button class="pill-remove" data-field="filter-status" aria-label="Remove filter">&times;</button>
+          </span>
+          <span class="filter-pill">
+            Category: <strong>Electronics</strong>
+            <button class="pill-remove" data-field="filter-category" aria-label="Remove filter">&times;</button>
+          </span>
+        </div>
+
+        <!-- Results Counter & Sort Bar -->
+        <div class="d-flex justify-content-between align-items-center results-meta">
+          <div>Showing <strong>8</strong> catalog records matching your query</div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="fs-7 text-muted d-none d-sm-inline">Sort by:</span>
+            <select class="form-select form-select-sm" style="width: auto;" aria-label="Sort catalog">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Catalog Grid -->
+        <!-- TODO: PHP loop start for items query results -->
+        <div class="row g-4 mb-5">
+
+          <!-- Item Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Electronics</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-laptop text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0892</span>
+                <h3 class="ticket-title">MacBook Air M2 (Space Grey)</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Library 2nd Floor</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> Today</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Electronics</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-headphones text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#LST-2026-0144</span>
+                <h3 class="ticket-title">Sony WH-1000XM4 Headphones</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Student Center</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> Today</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-lost">LOST</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 3 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Accessories</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-watch text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0143</span>
+                <h3 class="ticket-title">Fossil Leather Wristwatch</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Eng Block B</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> Yesterday</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 4 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Documents</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-person-badge text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0140</span>
+                <h3 class="ticket-title">Student ID Card (CSE Dept)</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Main Canteen</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> Yesterday</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 5 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Bags</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-backpack text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#LST-2026-0138</span>
+                <h3 class="ticket-title">Blue Wildcraft Backpack</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Sports Complex</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> 3 days ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-lost">LOST</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 6 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Electronics</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-phone text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0131</span>
+                <h3 class="ticket-title">Samsung Galaxy Tab S7</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Library Quiet Zone</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> 4 days ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-claimed">CLAIMED</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 7 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Keys &amp; Lockers</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-key text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#RTN-2026-0112</span>
+                <h3 class="ticket-title">Honda Bike Key ring with Tag</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> North Parking</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> 5 days ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-returned">RETURNED</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 8 -->
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Accessories</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-eyeglasses text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0105</span>
+                <h3 class="ticket-title">Ray-Ban Prescription Glasses</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Seminar Hall 3</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> 1 week ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">View Stub →</span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+        <!-- TODO: PHP loop end -->
+
+        <!-- Empty State Container (Hidden by default, shown if no results in PHP/JS) -->
+        <div class="empty-state d-none" id="emptyCatalogState">
+          <div class="empty-rack"><i class="bi bi-inbox"></i></div>
+          <h3>No matching tickets found</h3>
+          <p>No items match your active filters. Try widening your search keyword or clearing date limits.</p>
+          <a href="browse.html" class="btn btn-outline-primary btn-sm">Clear All Filters</a>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Catalog pagination" class="d-flex justify-content-center">
+          <ul class="pagination pagination-sm">
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="findly-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><span class="brand-mark">✦</span> Findly</div>
+          <p class="footer-tagline">Campus Lost &amp; Found Management System</p>
+          <p class="fs-7 text-white-50 mb-0">Ganpat University • Student &amp; Staff Service</p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 ms-lg-auto">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Catalog</a></li>
+            <li><a href="report.html">Report Item</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Quick Actions</div>
+          <ul class="footer-links">
+            <li><a href="report.html?type=lost">Report Lost</a></li>
+            <li><a href="report.html?type=found">Report Found</a></li>
+            <li><a href="login.html">Student Sign In</a></li>
+            <li><a href="login.html?tab=register">Create Account</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <div class="footer-col-title">Campus Security</div>
+          <ul class="footer-links">
+            <li class="fs-7 text-white-50"><i class="bi bi-geo-alt me-1 text-brass"></i> Main Security Office, Gate 1</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-clock me-1 text-brass"></i> Mon–Fri: 8:00 AM – 6:00 PM</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-telephone me-1 text-brass"></i> Ext: 4092 / 4093</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Findly System. All rights reserved.</div>
+        <div class="footer-ref">TAG-SYS-v1.0.4 • GANPAT-UNIV</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

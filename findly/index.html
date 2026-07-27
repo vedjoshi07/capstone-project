@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Findly — Campus Lost & Found System at Ganpat University. Report lost or found items and submit claim requests.">
+  <title>Findly — Campus Lost &amp; Found</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg findly-nav">
+    <div class="container">
+      <a class="findly-brand" href="index.html">
+        <span class="brand-mark">✦</span> Findly
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#findlyNav">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="findlyNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="browse.html">Browse Catalog</a></li>
+          <!-- TODO: PHP admin check -->
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Console</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <a class="nav-link-report" href="report.html">
+            <i class="bi bi-tag-fill me-1"></i> Report Item
+          </a>
+          <a class="nav-link" href="login.html">Sign In</a>
+          <a class="nav-link-register" href="login.html?tab=register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <span class="hero-eyebrow">Ganpat University Lost &amp; Found</span>
+            <h1 class="hero-headline">Reunite <em>lost property</em> with its rightful owner.</h1>
+            <p class="hero-sub">The verified digital claim ticket system for campus property. Search reported catalog items or submit a tag for lost property.</p>
+
+            <form class="hero-search" id="heroSearchForm" action="browse.html" method="get">
+              <input type="text" name="q" placeholder="Search by item name, location, or tag ID (e.g. AirPods, Library)..." aria-label="Search catalog items">
+              <button type="submit"><i class="bi bi-search"></i> Search Catalog</button>
+            </form>
+
+            <!-- Stat Tickets -->
+            <div class="row g-3 max-w-500">
+              <div class="col-6 col-sm-4">
+                <div class="stat-card">
+                  <span class="stat-ref">STAT-01</span>
+                  <!-- TODO: PHP dynamic count -->
+                  <div class="stat-number">142</div>
+                  <div class="stat-label">Items Reported</div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-4">
+                <div class="stat-card">
+                  <span class="stat-ref">STAT-02</span>
+                  <!-- TODO: PHP dynamic count -->
+                  <div class="stat-number">89</div>
+                  <div class="stat-label">Returned to Owner</div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-4">
+                <div class="stat-card">
+                  <span class="stat-ref">STAT-03</span>
+                  <div class="stat-number">96%</div>
+                  <div class="stat-label">Verified Match</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 d-none d-lg-block">
+            <!-- Signature Item Ticket Showcase -->
+            <div class="ticket-card animate-in" style="max-width: 360px; margin: 0 auto; transform: rotate(1deg);">
+              <div class="ticket-img">
+                <span class="ticket-category">Electronics</span>
+                <div class="ticket-img-placeholder">
+                  <i class="bi bi-laptop text-slate"></i>
+                </div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0892</span>
+                <h3 class="ticket-title">MacBook Air M2 (Space Grey)</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Library 2nd Floor</span>
+                  <span>•</span>
+                  <span><i class="bi bi-calendar3"></i> Today, 2:15 PM</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">View Claim Stub →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="text-center max-w-600 mx-auto mb-5">
+          <span class="eyebrow">Verification Protocol</span>
+          <h2 class="section-title">How the Claim Process Works</h2>
+          <p class="section-sub">A simple 3-step paper-trail workflow to ensure lost items return safely.</p>
+        </div>
+
+        <div class="row g-4 align-items-center">
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-icon"><i class="bi bi-tag"></i></div>
+              <span class="step-number">Step 01</span>
+              <h3 class="step-title">Report &amp; Tag</h3>
+              <p class="step-desc">Log lost or found items with photos, location, and key descriptors to generate a digital claim ticket.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-icon"><i class="bi bi-search"></i></div>
+              <span class="step-number">Step 02</span>
+              <h3 class="step-title">Match &amp; Verify</h3>
+              <p class="step-desc">Browse catalog listings or check claim requests against serial numbers and unique markings.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-icon"><i class="bi bi-shield-check"></i></div>
+              <span class="step-number">Step 03</span>
+              <h3 class="step-title">Secure Claim</h3>
+              <p class="step-desc">Submit proof of ownership. Once verified by campus security, collect property at Gate 1 office.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Items Grid Section -->
+    <section class="section">
+      <div class="container">
+        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+          <div>
+            <span class="eyebrow">Live Ticket Feed</span>
+            <h2 class="section-title mb-0">Recently Logged Items</h2>
+          </div>
+          <a href="browse.html" class="btn btn-outline-primary btn-sm">View All Tickets →</a>
+        </div>
+
+        <!-- TODO: PHP loop start for recent items -->
+        <div class="row g-4">
+          <!-- Item Card 1 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Electronics</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-headphones text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#LST-2026-0144</span>
+                <h3 class="ticket-title">Sony WH-1000XM4 Headphones</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Student Center</span>
+                  <span>•</span>
+                  <span><i class="bi bi-clock"></i> 2h ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-lost">LOST</span>
+                <span class="ticket-view-link">Details →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 2 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Accessories</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-watch text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0143</span>
+                <h3 class="ticket-title">Fossil Leather Wristwatch</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Engineering Block B</span>
+                  <span>•</span>
+                  <span><i class="bi bi-clock"></i> 4h ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">Details →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 3 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Documents</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-person-badge text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#FND-2026-0140</span>
+                <h3 class="ticket-title">Student ID Card (CSE Dept)</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> Main Canteen</span>
+                  <span>•</span>
+                  <span><i class="bi bi-clock"></i> Yesterday</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-found">FOUND</span>
+                <span class="ticket-view-link">Details →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Item Card 4 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="item-detail.html" class="ticket-card">
+              <div class="ticket-img">
+                <span class="ticket-category">Keys &amp; Lockers</span>
+                <div class="ticket-img-placeholder"><i class="bi bi-key text-slate"></i></div>
+              </div>
+              <div class="ticket-body">
+                <span class="ticket-ref">#RTN-2026-0112</span>
+                <h3 class="ticket-title">Honda Bike Key ring with Tag</h3>
+                <div class="ticket-meta">
+                  <span><i class="bi bi-geo-alt"></i> North Parking</span>
+                  <span>•</span>
+                  <span><i class="bi bi-clock"></i> 2 days ago</span>
+                </div>
+              </div>
+              <div class="ticket-foot">
+                <span class="status-stamp stamp-returned">RETURNED</span>
+                <span class="ticket-view-link">Details →</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- TODO: PHP loop end -->
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="findly-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><span class="brand-mark">✦</span> Findly</div>
+          <p class="footer-tagline">Campus Lost &amp; Found Management System</p>
+          <p class="fs-7 text-white-50 mb-0">Ganpat University • Student &amp; Staff Service</p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 ms-lg-auto">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Catalog</a></li>
+            <li><a href="report.html">Report Item</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Quick Actions</div>
+          <ul class="footer-links">
+            <li><a href="report.html?type=lost">Report Lost</a></li>
+            <li><a href="report.html?type=found">Report Found</a></li>
+            <li><a href="login.html">Student Sign In</a></li>
+            <li><a href="login.html?tab=register">Create Account</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <div class="footer-col-title">Campus Security</div>
+          <ul class="footer-links">
+            <li class="fs-7 text-white-50"><i class="bi bi-geo-alt me-1 text-brass"></i> Main Security Office, Gate 1</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-clock me-1 text-brass"></i> Mon–Fri: 8:00 AM – 6:00 PM</li>
+            <li class="fs-7 text-white-50"><i class="bi bi-telephone me-1 text-brass"></i> Ext: 4092 / 4093</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Findly System. All rights reserved.</div>
+        <div class="footer-ref">TAG-SYS-v1.0.4 • GANPAT-UNIV</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* ============================================================
+   Findly — Design Tokens
+   Single source of truth for all colors, spacing, and typography.
+   ============================================================ */
+
+:root {
+  /* ── Palette ─────────────────────────────────────────────── */
+  --paper:      #F6F5F1;   /* base bg — warm light grey        */
+  --ink:        #1C1C1E;   /* primary text / near-black         */
+  --ink-soft:   #55534C;   /* secondary text                    */
+  --brass:      #A87E45;   /* primary accent — claim-tag brass  */
+  --brass-dark: #8A6636;   /* accent hover / active             */
+  --slate:      #35505F;   /* secondary accent — links, found   */
+  --line:       #DEDAD0;   /* hairlines, ticket perforation     */
+  --card:       #FFFFFF;   /* card surfaces                     */
+  --danger:     #A6423A;   /* lost-item status / destructive    */
+  --returned:   #3D6B52;   /* returned/resolved — muted green   */
+
+  /* ── Semantic aliases ────────────────────────────────────── */
+  --color-bg:      var(--paper);
+  --color-surface: var(--card);
+  --color-border:  var(--line);
+  --color-text:    var(--ink);
+  --color-muted:   var(--ink-soft);
+
+  /* ── Status tokens ───────────────────────────────────────── */
+  --status-lost:     var(--danger);
+  --status-found:    var(--slate);
+  --status-claimed:  var(--brass);
+  --status-returned: var(--returned);
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* ── 8px spacing scale ───────────────────────────────────── */
+  --sp-1:  0.5rem;   /*  8px */
+  --sp-2:  1rem;     /* 16px */
+  --sp-3:  1.5rem;   /* 24px */
+  --sp-4:  2rem;     /* 32px */
+  --sp-5:  2.5rem;   /* 40px */
+  --sp-6:  3rem;     /* 48px */
+  --sp-8:  4rem;     /* 64px */
+  --sp-10: 5rem;     /* 80px */
+  --sp-12: 6rem;     /* 96px */
+
+  /* ── Border radius ───────────────────────────────────────── */
+  --radius:    6px;
+  --radius-sm: 3px;
+  --radius-lg: 10px;
+
+  /* ── Elevation ───────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(28,28,30,.06);
+  --shadow-md: 0 4px 14px rgba(28,28,30,.09);
+  --shadow-lg: 0 8px 28px rgba(28,28,30,.12);
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --ease:      200ms ease;
+  --ease-slow: 360ms ease;
+}
